@@ -56,7 +56,7 @@ function Generator() {
 Generator.prototype.startProcess = function(src, destFile) {
 
   // Load the template from file
-  var lineReader  = new lineByLineReader(process.cwd() + '/src/template/methods');
+  var lineReader  = new lineByLineReader(__dirname + '/template/methods');
 
 
 
