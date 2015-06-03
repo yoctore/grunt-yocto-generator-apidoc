@@ -9,10 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@lab.yocto.digital:yocto-grunt-modules/yocto-grunt-apidoc.git"
+    "url": "git+ssh:://git@lab.yocto.digital:yocto-grunt-modules/yocto-grunt-apidoc.git"
   },
   "files": [
-    "tasks"
+    "tasks",
+    "src"
   ],
   "licenses": [
     {
