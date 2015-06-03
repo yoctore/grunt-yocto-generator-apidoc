@@ -1,37 +1,30 @@
-/*
- * grunt-yocto-generator-apidoc
- * n
- *
- * Copyright (c) 2015 Balard Cedric
- * Licensed under the MIT license.
- */
-
 'use strict';
+
 
 module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    jshint: {
-      all: [
+    jshint : {
+      all : [
         'Gruntfile.js',
         'tasks/*.js'
       ],
-      options: {
+      options : {
         jshintrc: '.jshintrc'
       }
     },
 
     // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp']
+    clean : {
+      tests : ['tmp']
     },
 
     // Configuration to be run (and then tested).
-    yocto_generator_apidoc: {
+    yocto_generator_apidoc : {
 
-      apidoc: {
-        options: {
+      apidoc : {
+        options : {
           modelsFolder : '/example/models/',
           dest : '/example/apidoc.js'
         }

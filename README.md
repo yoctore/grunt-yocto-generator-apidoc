@@ -2,6 +2,13 @@
 
 > Plugin for generate comments file for apidoc
 
+This module load all json file in a specific folder, and translate this data in a comments file that will be imported by apidoc for generate doc
+
+For the structure of json file please refer to the yocto-api node module at :
+ - git@lab.yocto.digital:yocto-node-modules/yocto-api.git
+
+
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
@@ -17,6 +24,8 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-yocto-generator-apidoc');
 ```
 
+
+
 ## The "yocto_generator_apidoc" task
 
 ### Overview
@@ -25,65 +34,38 @@ In your project's Gruntfile, add a section named `yocto_generator_apidoc` to the
 ```js
 grunt.initConfig({
   yocto_generator_apidoc: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    apidoc: {
+      options: {
+        modelsFolder : '/example/models/',
+        dest : '/example/apidoc.js'
+      }
+    }
   },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.modelsFolder
 Type: `String`
-Default value: `',  '`
 
-A string value that is used to do something with whatever.
+The directory path where all you models are.
 
-#### options.punctuation
+#### options.dest
 Type: `String`
-Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+The file of you comment file which will be create
 
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+### Examples
 
 ```js
 grunt.initConfig({
   yocto_generator_apidoc: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    apidoc: {
+      options: {
+        modelsFolder : '/example/models/',
+        dest : '/example/apidoc.js'
+      }
+    }
   },
 });
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  yocto_generator_apidoc: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_

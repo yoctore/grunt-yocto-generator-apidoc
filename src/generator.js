@@ -44,7 +44,7 @@ function Generator() {
   this.commentFile = '';
 
   /**
-   * Contains the template
+   * Will Contains the template once loaded
    *
    * @type {String}
    *
@@ -55,7 +55,7 @@ function Generator() {
 
 Generator.prototype.startProcess = function(src, destFile, done) {
 
-  // Load the template from file
+  // Instantiate lineReader for Load the template from file
   var lineReader  = new lineByLineReader(__dirname + '/template/methods');
 
   //Save context
@@ -68,7 +68,9 @@ Generator.prototype.startProcess = function(src, destFile, done) {
     fs.unlinkSync(destFile);
   }
 
-  lineReader.on('error', function (err) {
+  //Handle error
+  lineReader.on('error', function(err) {
+
       // 'err' contains error object
       console.log(err);
       return false;
@@ -76,6 +78,7 @@ Generator.prototype.startProcess = function(src, destFile, done) {
 
   // Read eachline of file the template
   lineReader.on('line', function(line) {
+
     //Test if line is not a commentaire
     if (!_.startsWith(_.trim(line), '#')) {
       context.template += '* ' + line + '\n';
@@ -84,6 +87,7 @@ Generator.prototype.startProcess = function(src, destFile, done) {
 
   // All lines are read, file is closed now so we start process
   lineReader.on('end', function() {
+
       //End comments in template
       context.template += '*/';
 
@@ -100,8 +104,6 @@ Generator.prototype.startProcess = function(src, destFile, done) {
       //Close the async task
       done();
   });
-
-
 };
 
 

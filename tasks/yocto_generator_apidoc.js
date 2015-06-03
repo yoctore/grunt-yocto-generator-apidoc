@@ -1,18 +1,20 @@
-/*
- * grunt-yocto-generator-apidoc
- * n
- *
- * Copyright (c) 2015 Balard Cedric
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 var _         = require('lodash');
 var generator = require('../src/generator.js');
 var path      = require('path');
 
-
+/**
+* Grunt task for Generator of comments for apidocjs (www.apidocjs.com)
+*
+* This task load generator.js and execute it
+*
+*
+* @date : 03/06/2015
+* @author : BALARD, Cédric cedric@yocto.re
+* @copyright : YOCTO SAS, All rights reversed <http://www.yocto.re>
+* @module yocto-generator-apidoc
+*/
 module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
@@ -21,8 +23,8 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('yocto_generator_apidoc', 'Plugin for generate comments file for apidoc', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      modelsFolder: '',
-      dest: ''
+      modelsFolder : '',
+      dest : ''
     });
 
     // Test if parms is ok
@@ -33,7 +35,7 @@ module.exports = function(grunt) {
     }
 
     // Destination file
-    var destFile  = path.normalize(process.cwd() + '/' + options.dest);
+    var destFile = path.normalize(process.cwd() + '/' + options.dest);
 
     //folder where all json are
     var src = path.normalize(process.cwd() + '/' + options.modelsFolder +'/*.json');
@@ -44,7 +46,6 @@ module.exports = function(grunt) {
     grunt.log.writeln('Source foler are in  : ' + src);
     grunt.log.writeln('Destination file is : ' + destFile);
 
-
     //start a procress
     generator.startProcess(src, destFile, done);
 
@@ -52,5 +53,5 @@ module.exports = function(grunt) {
     grunt.log.ok('Comments file was generate at ' + destFile);
     return true;
 
-   });
+  });
 };
