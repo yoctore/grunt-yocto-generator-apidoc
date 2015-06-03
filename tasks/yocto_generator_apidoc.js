@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     //folder where all json are
     var src = path.normalize(process.cwd() + '/' + options.modelsFolder +'/*.json');
 
-    //Declare the module async
+    //Declare the module in async mode
     var done = this.async();
 
     grunt.log.writeln('Source foler are in  : ' + src);
@@ -46,10 +46,11 @@ module.exports = function(grunt) {
 
 
     //start a procress
-    generator.startProcess(src, destFile, this.async());
+    generator.startProcess(src, destFile, done);
 
     grunt.log.writeln('');
     grunt.log.ok('Comments file was generate at ' + destFile);
+    return true;
 
    });
 };

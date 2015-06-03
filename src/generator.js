@@ -53,12 +53,10 @@ function Generator() {
 }
 
 
-Generator.prototype.startProcess = function(src, destFile) {
+Generator.prototype.startProcess = function(src, destFile, done) {
 
   // Load the template from file
   var lineReader  = new lineByLineReader(__dirname + '/template/methods');
-
-
 
   //Save context
   var context = this;
@@ -78,7 +76,6 @@ Generator.prototype.startProcess = function(src, destFile) {
 
   // Read eachline of file the template
   lineReader.on('line', function(line) {
-  //  console.log(line);
     //Test if line is not a commentaire
     if (!_.startsWith(_.trim(line), '#')) {
       context.template += '* ' + line + '\n';
@@ -99,7 +96,12 @@ Generator.prototype.startProcess = function(src, destFile) {
         //Create the doc
         context.createApiFile(context.template, jsonModel, destFile);
       });
+
+      //Close the async task
+      done();
   });
+
+
 };
 
 
