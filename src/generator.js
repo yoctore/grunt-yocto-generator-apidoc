@@ -55,7 +55,6 @@ Generator.prototype.startProcess = function (src, destFile, done) {
   // Delete the commentFile if exist
   if (fs.existsSync(destFile)) {
 
-    logger.info('delete file apidoc file');
     fs.unlinkSync(destFile);
   }
 
@@ -111,7 +110,6 @@ Generator.prototype.createApiFile = function (theTemplate, jsonModel, destFile) 
   // Retrieve each methos on models files
   _.each(jsonModel.apidoc.methods, function (method) {
 
-    logger.info('Model : ' + jsonModel.models.model.name +  '  method : ' + method.type);
     // Retrieve all necessary Object in json
     var model = _.clone(jsonModel.models);
     _.extend(model, method);
@@ -120,8 +118,6 @@ Generator.prototype.createApiFile = function (theTemplate, jsonModel, destFile) 
     commentFile += ejs.render(theTemplate, model);
   }, this);
 
-  console.log('\n\n\n ------------------- \n\n');
-  console.log(commentFile);
   // Add the new comments method in file
   fs.appendFile(destFile, commentFile);
 };
