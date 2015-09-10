@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh:://git@lab.yocto.digital:yocto-grunt-modules/yocto-grunt-apidoc.git"
+    "url": "git+ssh:://git@gitlab.com:yocto-grunt-modules/yocto-grunt-apidoc.git"
   },
   "files": [
     "tasks",
@@ -25,7 +25,7 @@
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-nodeunit": "^0.3.3",
     "grunt": "~0.4.5",
-    "yoctohint" : "git+ssh://git@lab.yocto.digital:yocto-node-modules/yocto-hint.git"
+    "yoctohint" : "git+ssh://git@gitlab.com:yocto-grunt-modules/yocto-hint.git"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
@@ -36,7 +36,7 @@
   "dependencies": {
     "glob": "^5.0.10",
     "lodash": "^3.9.3",
-    "yocto-logger": "git+ssh://git@lab.yocto.digital:yocto-node-modules/yocto-logger.git",
+    "yocto-logger": "git+ssh://git@gitlab.com:yocto-node-modules/yocto-logger.git",
     "ejs" : "latest",
     "line-by-line": "^0.1.3"
   },
