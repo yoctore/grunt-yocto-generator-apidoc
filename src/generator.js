@@ -6,6 +6,7 @@ var fs                = require('fs');
 var logger            = require('yocto-logger');
 var ejs               = require('ejs');
 var LineByLineReader  = require('line-by-line');
+var path              = require('path');
 
 /**
 * Generator of comments for apidocjs (www.apidocjs.com)
@@ -56,6 +57,13 @@ Generator.prototype.startProcess = function (src, destFile, done) {
   if (fs.existsSync(destFile)) {
 
     fs.unlinkSync(destFile);
+  } else {
+
+    // Try to Create folder
+    try {
+      fs.mkdirSync(path.dirname(destFile));
+    } catch(e) {
+    }
   }
 
   // Handle error
@@ -87,8 +95,12 @@ Generator.prototype.startProcess = function (src, destFile, done) {
       // Get json file
       var jsonModel = JSON.parse(fs.readFileSync(file, 'utf-8'));
 
-      // Create the doc
-      context.createApiFile(context.template, jsonModel, destFile);
+      // Check if apidoc is define
+      if (!_.isUndefined(jsonModel.apidoc)) {
+
+        // Create the doc
+        context.createApiFile(context.template, jsonModel, destFile);
+      }
     });
 
     // Close the async task
@@ -120,6 +132,7 @@ Generator.prototype.createApiFile = function (theTemplate, jsonModel, destFile) 
 
   // Add the new comments method in file
   fs.appendFile(destFile, commentFile);
+  console.log('Model "' + jsonModel.models.model.name + '" was documented with apidocjs');
 };
 
 module.exports = new (Generator)();
