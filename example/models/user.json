@@ -14,8 +14,7 @@
         "email"     : {
           "type" : "String",
           "required" : true
-        },
-        "cart_id"   : ["ObjectId"]
+        }
       }
     }
   },

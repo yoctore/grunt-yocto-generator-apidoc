@@ -42,15 +42,30 @@
       <% } %>
     <% } else if (Object.prototype.toString.call(model.properties[key]) == '[object Object]' ) { %>
       <% if ((model.properties[key].required === true || model.properties[key].required === 'true') && type !== 'patch') { %>
-          @apiParam {<%-model.properties[key].type%>} <%- key %> <%- key %> of the <%= model.name %>
+          # Required parameter
+
+          <% if (model.properties[key].type == '[object Object]') {%>
+            @apiParam {[Object]} [<%- key %>] <%- key %> of the  <%= model.name %>
+          <%  } else {%>
+            @apiParam {<%-model.properties[key].type%>} <%- key %> <%- key %> of the <%= model.name %>
+          <%  } %>
+
         <% } else { %>
-          @apiParam {<%-model.properties[key].type%>} [<%- key %>] <%- key %> of the <%= model.name %>
+          # Optional parameter
+
+          <% if (model.properties[key].type == '[object Object]') {%>
+            @apiParam {[Object]} [<%- key %>] [<%- key %>] of the  <%= model.name %>
+          <%  } else {%>
+            @apiParam {<%-model.properties[key].type%>} [<%- key %>] <%- key %> of the <%= model.name %>
+          <%  } %>
+
         <%  } %>
     <% } else { %>
-      @apiParam {<%-model.properties[key]%>} [<%- key %>] <%- key %> of the <%= model.name %>
+      @apiParam {<%-model.properties[key]%>} [<%- key %>] <%- key %> of the <%= model.name %> cccccc
     <% } %>
   <% } %>
 <% } %>
+
 <% } else { %>
 <% for(var key in model.properties) { %>
   <% if (Object.prototype.toString.call(model.properties[key]) == '[object Array]') { %>
@@ -106,7 +121,11 @@
           <% if (Object.prototype.toString.call(model.properties[key][0]) == '[object Object]') { %>
             @apiSuccess {[<%-model.properties[key][0].type%>]} <%- key %>  <%- key %>(s) of <%= model.name %>
           <% } else { %>
-            @apiSuccess {[<%-model.properties[key]%>]} [<%- key %>]  <%- key %>(s) of <%= model.name %>
+            <% if (model.properties[key].type == '[object Object]') {%>
+              @apiSuccess {[Object]} <%- key %> <%- key %> of the <%= model.name %>
+            <%  } else {%>
+              @apiSuccess {<%-model.properties[key].type%>} <%- key %> <%- key %> of the <%= model.name %>
+            <%  } %>
           <% } %>
 
           <% } else if (Object.prototype.toString.call(model.properties[key]) == '[object Object]') { %>

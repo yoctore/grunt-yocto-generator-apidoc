@@ -30,7 +30,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     yoctohint : {
       options : {
         // If you wan to override jshint rules ...
