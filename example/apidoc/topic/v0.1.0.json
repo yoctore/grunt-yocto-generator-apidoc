@@ -1,33 +1,14 @@
 {
-  "models" : {
-    "model" : {
-      "name"      : "user",
-      "properties" : {
-        "name"      : {
-          "type" : "String",
-          "required" : true
-        },
-        "firstname" : {
-          "type" : "String",
-          "required" : true
-        },
-        "email"     : {
-          "type" : "String",
-          "required" : true
-        }
-      }
-    }
-  },
   "apidoc" : {
     "methods" : [
       {
         "apiVersion"    : "0.1.0",
         "type"          : "get",
-        "title"         : "GET User(s)",
-        "path"          : "/user/:user_id",
+        "title"         : "GET Account(s)",
+        "path"          : "/account/:user_id",
         "apiPermission"  : "admin",
         "addDefaultParamFromModel" : false,
-        "methodDescription" : "Method to retrieve one or all user, if you want get one user you should specify his id, otherwise the whole users are returned",
+        "methodDescription" : "Method to retrieve one  of V.0.1.0 ..",
         "specificParam" : [
           {
             "name"  : "user_id",
@@ -44,28 +25,11 @@
         "apiErrorExample" : "notFound"
       },
       {
-        "apiVersion"    : "0.1.0",
-        "type"          : "head",
-        "title"         : "HEAD of User(s)",
-        "path"          : "/user/:user_id",
-        "apiPermission"  : "admin",
-        "methodDescription" : "Method to retrieve the header of one or all user, if you want get  the header of one user you should specify his id, otherwise the header of whole users are returned",
-        "addDefaultParamFromModel" : false,
-        "specificParam" : [
-          {
-            "name"  : "user_id",
-            "type"  : "Object_id"
-          }
-        ],
-        "apiSuccessExample" : "none",
-        "apiErrorExample" : "notFound"
-      },
-      {
         "apiVersion" : "0.1.0",
         "type"      : "post",
-        "path"      : "/user/",
-        "methodDescription" : "Method to add a new user in database",
-        "title"         : "POST one User",
+        "path"      : "/account",
+        "methodDescription" : "Method to add a new account in database",
+        "title"         : "POST one Account",
         "apiPermission"  : "admin",
         "specificParam" : [],
         "apiSuccessExample" : "success",
@@ -73,15 +37,32 @@
       },
       {
         "apiVersion"    : "0.1.0",
-        "type"          : "delete",
-        "title"         : "DELETE one User",
-        "path"          : "/user/:user_id",
+        "type"          : "head",
+        "title"         : "HEAD of account(s)",
+        "path"          : "/account/:account",
         "apiPermission"  : "admin",
-        "methodDescription" : "Method to delete a user in database",
+        "methodDescription" : "Method to retrieve the header of one or all account, if you want get  the header of one account you should specify his id, otherwise the header of whole accounts are returned",
         "addDefaultParamFromModel" : false,
         "specificParam" : [
           {
-            "name"  : "user_id",
+            "name"  : "account_id",
+            "type"  : "Object_id"
+          }
+        ],
+        "apiSuccessExample" : "none",
+        "apiErrorExample" : "notFound"
+      },
+      {
+        "apiVersion"    : "0.1.0",
+        "type"          : "delete",
+        "title"         : "DELETE one account",
+        "path"          : "/account/:account_id",
+        "apiPermission"  : "admin",
+        "methodDescription" : "Method to delete a account in database",
+        "addDefaultParamFromModel" : false,
+        "specificParam" : [
+          {
+            "name"  : "account_id",
             "type"  : "Object_id",
             "required" : true
           }
@@ -92,14 +73,14 @@
       {
         "apiVersion"    : "0.1.0",
         "type"          : "patch",
-        "title"         : "PATCH one User",
-        "path"          : "/user/:user_id",
+        "title"         : "PATCH one account",
+        "path"          : "/account/:account_id",
         "apiPermission"  : "admin",
-        "methodDescription" : "Method to patch a specific param to user in database",
+        "methodDescription" : "Method to patch a specific param to account in database",
         "addDefaultParamFromModel" : true,
         "specificParam" : [
           {
-            "name"  : "user_id",
+            "name"  : "account_id",
             "type"  : "Object_id",
             "required" : true
           }
@@ -110,14 +91,14 @@
       {
         "apiVersion"    : "0.1.0",
         "type"          : "put",
-        "title"         : "PUT one User",
-        "path"          : "/user/:user_id",
+        "title"         : "PUT one account",
+        "path"          : "/account/:account_id",
         "apiPermission"  : "admin",
-        "methodDescription" : "Method to put all property of a user in database",
+        "methodDescription" : "Method to put all property of a account in database",
         "addDefaultParamFromModel" : true,
         "specificParam" : [
           {
-            "name"  : "user_id",
+            "name"  : "account_id",
             "type"  : "Object_id",
             "required" : true
           }

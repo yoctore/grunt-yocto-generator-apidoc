@@ -5,28 +5,15 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    jshint : {
-      all : [
-        'Gruntfile.js',
-        'tasks/*.js'
-      ],
-      options : {
-        jshintrc: '.jshintrc'
-      }
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean : {
-      tests : ['tmp']
-    },
 
     // Configuration to be run (and then tested).
     yocto_generator_apidoc : {
 
       apidoc : {
         options : {
-          modelsFolder : '/example/models/',
-          dest : '/example/apidoc.js'
+          modelsFolder  : '/example/models/',
+          apidocsFolder : '/example/apidoc/',
+          dest          : '/example/apidoc.js'
         }
       }
     },
@@ -39,13 +26,17 @@ module.exports = function(grunt) {
         jshint : {}
       },
       // Set all your file here
-      all : [ 'src/generator.js' ]
+      all : [ 'src/**.js', 'tasks/**.js' ]
+    },
+
+    // apidoc generator
+    apidoc: {
+      myapp: {
+        src: "/example/",
+        dest: "/exemple/apidoc-the-site/"
+      }
     }
-
   });
-
-  // load task
-  grunt.loadNpmTasks('yoctohint');
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
@@ -53,11 +44,17 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-apidoc');
+  grunt.loadNpmTasks('yoctohint');
+
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('buildExample', ['clean', 'yocto_generator_apidoc', 'jshint']);
+  grunt.registerTask('buildExample', [ 'yocto_generator_apidoc', 'apidoc' ]);
 
   grunt.registerTask('yhint', ['yoctohint']);
+
+  grunt.registerTask('test', [ 'yocto_generator_apidoc' ]);
+
+  grunt.registerTask('g-apidoc', ['apidoc:myapp']);
 
 };

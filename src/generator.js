@@ -3,10 +3,12 @@
 var _                 = require('lodash');
 var glob              = require('glob');
 var fs                = require('fs');
-var logger            = require('yocto-logger');
 var ejs               = require('ejs');
 var LineByLineReader  = require('line-by-line');
 var path              = require('path');
+
+// TODO : ajouter la possibilité de se baser sur un fichier "route.json" pour récupérer la route d'un modele afin de ne pas dupliquer l'info
+// TODO : utiliser fonction yocto-utils pour généré les json object d'exemple
 
 /**
 * Generator of comments for apidocjs (www.apidocjs.com)
@@ -43,9 +45,19 @@ function Generator () {
   *
   */
   this.template = '\n\n/**\n';
+
+  /**
+   * Grunt instance
+   *
+   * @type {Object}
+   */
+  this.grunt    = {};
 }
 
-Generator.prototype.startProcess = function (src, destFile, done) {
+Generator.prototype.startProcess = function (src, docs, destFile, done, grunt) {
+
+  // Save grunt instance
+  this.grunt = grunt;
 
   // Instantiate lineReader for Load the template from file
   var lineReader  = new LineByLineReader(__dirname + '/template/methods');
@@ -62,7 +74,7 @@ Generator.prototype.startProcess = function (src, destFile, done) {
     // Try to Create folder
     try {
       fs.mkdirSync(path.dirname(destFile));
-    } catch(e) {
+    } catch (e) {
     }
   }
 
@@ -70,7 +82,7 @@ Generator.prototype.startProcess = function (src, destFile, done) {
   lineReader.on('error', function (err) {
 
     // 'err' contains error object
-    console.log(err);
+    grunt.log.error([err]);
     return false;
   });
 
@@ -92,15 +104,21 @@ Generator.prototype.startProcess = function (src, destFile, done) {
     // Get each json file that are on the models repository
     _.each(_.words(glob.sync(src), /[^,,]+/g), function (file) {
 
-      // Get json file
+      // Get model json file
       var jsonModel = JSON.parse(fs.readFileSync(file, 'utf-8'));
 
-      // Check if apidoc is define
-      if (!_.isUndefined(jsonModel.apidoc)) {
+      // Get each json file that are on the models repository
+      _.each(_.words(glob.sync(docs + path.basename(file, '.json') + '/*.json'), /[^,,]+/g), function (file) {
 
-        // Create the doc
-        context.createApiFile(context.template, jsonModel, destFile);
-      }
+        var jsonApiDoc =  JSON.parse(fs.readFileSync(file, 'utf-8'));
+
+        // Check if apidoc is define
+        if (!_.isUndefined(jsonApiDoc.apidoc)) {
+
+          // Create the doc
+          context.createApiFile(context.template, jsonModel, jsonApiDoc, destFile);
+        }
+      });
     });
 
     // Close the async task
@@ -116,23 +134,26 @@ Generator.prototype.startProcess = function (src, destFile, done) {
 * @param  {Object} theTemplate [description]
 * @param  {Object} jsonModel   [description]
 */
-Generator.prototype.createApiFile = function (theTemplate, jsonModel, destFile) {
+Generator.prototype.createApiFile = function (theTemplate, jsonModel, jsonApiDoc, destFile) {
 
   var commentFile = '';
-  // Retrieve each methos on models files
-  _.each(jsonModel.apidoc.methods, function (method) {
 
-    // Retrieve all necessary Object in json
-    var model = _.clone(jsonModel.models);
+  // Retrieve each methods on jsonApiDoc for generate an bloc with all necessary values
+  _.each(jsonApiDoc.apidoc.methods, function (method) {
+
+    // clone model for multiple process
+    var model = _.clone(jsonModel);
+
+    // add method in apidoc to the model
     _.extend(model, method);
 
-    // EJS Process
+    // Generate the apidoc file with EJS template
     commentFile += ejs.render(theTemplate, model);
   }, this);
 
   // Add the new comments method in file
   fs.appendFile(destFile, commentFile);
-  console.log('Model "' + jsonModel.models.model.name + '" was documented with apidocjs');
+  this.grunt.log.ok('Model "' + jsonModel.model.name + '" was generate for apidocjs');
 };
 
 module.exports = new (Generator)();
