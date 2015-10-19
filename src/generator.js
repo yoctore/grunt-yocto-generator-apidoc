@@ -102,22 +102,25 @@ Generator.prototype.startProcess = function (src, docs, destFile, done, grunt) {
     context.template += '*/';
 
     // Get each json file that are on the models repository
-    _.each(_.words(glob.sync(src), /[^,,]+/g), function (file) {
+    _.each(_.words(glob.sync(src), /[^,,]+/g), function (folder) {
 
-      // Get model json file
-      var jsonModel = JSON.parse(fs.readFileSync(file, 'utf-8'));
+      _.each(_.words(glob.sync(folder + '/*.json'), /[^,,]+/g), function (file) {
 
-      // Get each json file that are on the models repository
-      _.each(_.words(glob.sync(docs + path.basename(file, '.json') + '/*.json'), /[^,,]+/g), function (file) {
+        // Get model json file
+        var jsonModel = JSON.parse(fs.readFileSync(file, 'utf-8'));
 
-        var jsonApiDoc =  JSON.parse(fs.readFileSync(file, 'utf-8'));
+        // Get each json file that are on the models repository
+        _.each(_.words(glob.sync(docs + path.basename(file, '.json') + '/*.json'), /[^,,]+/g), function (file) {
 
-        // Check if apidoc is define
-        if (!_.isUndefined(jsonApiDoc.apidoc)) {
+          var jsonApiDoc =  JSON.parse(fs.readFileSync(file, 'utf-8'));
 
-          // Create the doc
-          context.createApiFile(context.template, jsonModel, jsonApiDoc, destFile);
-        }
+          // Check if apidoc is define
+          if (!_.isUndefined(jsonApiDoc.apidoc)) {
+
+            // Create the doc
+            context.createApiFile(context.template, jsonModel, jsonApiDoc, destFile);
+          }
+        });
       });
     });
 

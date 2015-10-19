@@ -2,6 +2,759 @@
 
 /**
 * 
+* @api {get} /mailList/:user_id GET mailList(s)
+* @apiGroup MailList
+* @apiVersion 0.1.0
+* @apiPermission admin
+* @apiDescription Method to retrieve one  of V.0.1.0 ..
+* 
+* 
+* 
+*   
+*     
+*       @apiParam {Object_id} [user_id]  user_id(s) of the MailList
+*     
+*   
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   
+*     
+*       
+* 
+*         
+*             
+*                 
+*                   @apiSuccess {String} status status of the MailList
+*                 
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+*                 
+*                   @apiSuccess {ObjectId} creator_id creator_id of the MailList
+*                 
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+*                 
+*                   @apiSuccess {String} icon_reference icon_reference of the MailList
+*                 
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+*                 
+*                   @apiSuccess {String} name name of the MailList
+*                 
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+*                 
+*                   @apiSuccess {Number} order order of the MailList
+*                 
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+*                 
+*                   @apiSuccess {ObjectId} mailing_lists mailing_lists of the MailList
+*                 
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+*                 
+*                   @apiSuccess {Date} created_date created_date of the MailList
+*                 
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+*                 
+*                   @apiSuccess {Date} updated_date updated_date of the MailList
+*                 
+*             
+* 
+*         
+*       
+* 
+*         
+*             
+* 
+*         
+*       
+* 
+*       @apiSuccessExample {json}Success-Response
+*       HTTP/1.1 200 OK:
+*       {
+*       "status" : "[object Object]""creator_id" : "[object Object]""icon_reference" : "[object Object]""name" : "[object Object]""little_name" : "[object Object]""order" : "[object Object]""mailing_lists" : "[object Object]""revisions" : "[object Object]""created_date" : "[object Object]""updated_date" : "[object Object]""deleted_date" : "[object Object]"
+*       }
+*   
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiErrorExample MailListNotFound:
+*   HTTP/1.1 400
+*   {
+*     "error" : " Failed get a MailList"
+*   }
+* 
+*   @apiError {String} error Failed get a MailList
+* 
+* 
+* 
+*/
+
+/**
+* 
+* @api {post} /mailList POST one mailList
+* @apiGroup MailList
+* @apiVersion 0.1.0
+* @apiPermission admin
+* @apiDescription Method to add a new mailList in database
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   
+*     
+* 
+*         
+*           @apiParam {String} status status of the MailList
+*         
+*     
+*   
+* 
+*   
+*     
+* 
+*         
+*           @apiParam {ObjectId} creator_id creator_id of the MailList
+*         
+*     
+*   
+* 
+*   
+*     
+* 
+*         
+*           @apiParam {String} icon_reference icon_reference of the MailList
+*         
+*     
+*   
+* 
+*   
+*     
+* 
+*         
+*           @apiParam {String} name name of the MailList
+*         
+*     
+*   
+* 
+*   
+*     
+* 
+*       
+*         @apiParam {String} [little_name] little_name of the MailList
+*       
+* 
+*     
+*   
+* 
+*   
+*     
+* 
+*         
+*           @apiParam {Number} order order of the MailList
+*         
+*     
+*   
+* 
+*   
+*     
+* 
+*         
+*           @apiParam {ObjectId} mailing_lists mailing_lists of the MailList
+*         
+*     
+*   
+* 
+*   
+*     
+* 
+*       
+*         @apiParam {[Object]} [revisions] revisions of the  MailList
+*       
+* 
+*     
+*   
+* 
+*   
+*     
+* 
+*         
+*           @apiParam {Date} created_date created_date of the MailList
+*         
+*     
+*   
+* 
+*   
+*     
+* 
+*         
+*           @apiParam {Date} updated_date updated_date of the MailList
+*         
+*     
+*   
+* 
+*   
+*     
+* 
+*       
+*         @apiParam {Date} [deleted_date] deleted_date of the MailList
+*       
+* 
+*     
+*   
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiSuccessExample MailListSuccess-Response:
+*   HTTP/1.1 200 OK
+*   {
+*     "message" : "request success"
+*   }
+* 
+*   @apiSuccess {String} message request success
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiErrorExample MailListNotFound:
+*   HTTP/1.1 400
+*   {
+*     "error" : " Failed post a MailList"
+*   }
+* 
+*   @apiError {String} error Failed post a MailList
+* 
+* 
+* 
+*/
+
+/**
+* 
+* @api {head} /mailList/:mailList HEAD of mailList(s)
+* @apiGroup MailList
+* @apiVersion 0.1.0
+* @apiPermission admin
+* @apiDescription Method to retrieve the header of one or all mailList, if you want get  the header of one mailList you should specify his id, otherwise the header of whole mailLists are returned
+* 
+* 
+* 
+*   
+*     
+*       @apiParam {Object_id} [mailList_id]  mailList_id(s) of the MailList
+*     
+*   
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiErrorExample MailListNotFound:
+*   HTTP/1.1 400
+*   {
+*     "error" : " Failed head a MailList"
+*   }
+* 
+*   @apiError {String} error Failed head a MailList
+* 
+* 
+* 
+*/
+
+/**
+* 
+* @api {delete} /mailList/:mailList_id DELETE one mailList
+* @apiGroup MailList
+* @apiVersion 0.1.0
+* @apiPermission admin
+* @apiDescription Method to delete a mailList in database
+* 
+* 
+* 
+*   
+*     
+*       
+*         
+*           @apiParam {Object_id} mailList_id  mailList_id(s) of the MailList
+*         
+*       
+*     
+*   
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiSuccessExample MailListSuccess-Response:
+*   HTTP/1.1 200 OK
+*   {
+*     "message" : "request success"
+*   }
+* 
+*   @apiSuccess {String} message request success
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiErrorExample MailListNotFound:
+*   HTTP/1.1 400
+*   {
+*     "error" : " Failed delete a MailList"
+*   }
+* 
+*   @apiError {String} error Failed delete a MailList
+* 
+* 
+* 
+*/
+
+/**
+* 
+* @api {patch} /mailList/:mailList_id PATCH one mailList
+* @apiGroup MailList
+* @apiVersion 0.1.0
+* @apiPermission admin
+* @apiDescription Method to patch a specific param to mailList in database
+* 
+* 
+* 
+*   
+*     
+*       
+*         
+*           @apiParam {Object_id} mailList_id  mailList_id(s) of the MailList
+*         
+*       
+*     
+*   
+* 
+* 
+* 
+* 
+* 
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {String} [status] status of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {ObjectId} [creator_id] creator_id of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {String} [icon_reference] icon_reference of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {String} [name] name of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {String} [little_name] little_name of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {Number} [order] order of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {ObjectId} [mailing_lists] mailing_lists of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {[Object]} [revisions] [revisions] of the  MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {Date} [created_date] created_date of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {Date} [updated_date] updated_date of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {Date} [deleted_date] deleted_date of the MailList
+*           
+* 
+*         
+*     
+*   
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiSuccessExample MailListSuccess-Response:
+*   HTTP/1.1 200 OK
+*   {
+*     "message" : "request success"
+*   }
+* 
+*   @apiSuccess {String} message request success
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiErrorExample MailListNotFound:
+*   HTTP/1.1 400
+*   {
+*     "error" : " Failed patch a MailList"
+*   }
+* 
+*   @apiError {String} error Failed patch a MailList
+* 
+* 
+* 
+*/
+
+/**
+* 
+* @api {put} /mailList/:mailList_id PUT one mailList
+* @apiGroup MailList
+* @apiVersion 0.1.0
+* @apiPermission admin
+* @apiDescription Method to put all property of a mailList in database
+* 
+* 
+* 
+*   
+*     
+*       
+*         
+*           @apiParam {Object_id} mailList_id  mailList_id(s) of the MailList
+*         
+*       
+*     
+*   
+* 
+* 
+* 
+* 
+* 
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {String} status status of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {ObjectId} creator_id creator_id of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {String} icon_reference icon_reference of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {String} name name of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {String} [little_name] little_name of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {Number} order order of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {ObjectId} mailing_lists mailing_lists of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {[Object]} [revisions] [revisions] of the  MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {Date} created_date created_date of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {Date} updated_date updated_date of the MailList
+*           
+* 
+*         
+*     
+*   
+*     
+*       
+* 
+*           
+*             @apiParam {Date} [deleted_date] deleted_date of the MailList
+*           
+* 
+*         
+*     
+*   
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiSuccessExample MailListSuccess-Response:
+*   HTTP/1.1 200 OK
+*   {
+*     "message" : "request success"
+*   }
+* 
+*   @apiSuccess {String} message request success
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+*   @apiErrorExample MailListNotFound:
+*   HTTP/1.1 400
+*   {
+*     "error" : " Failed put a MailList"
+*   }
+* 
+*   @apiError {String} error Failed put a MailList
+* 
+* 
+* 
+*/
+
+/**
+* 
 * @api {get} /account/:user_id GET Account(s)
 * @apiGroup Topic
 * @apiVersion 0.1.0

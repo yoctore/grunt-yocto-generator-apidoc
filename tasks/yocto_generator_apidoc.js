@@ -43,7 +43,7 @@ module.exports = function (grunt) {
     var destFile = path.normalize(process.cwd() + '/' + options.dest);
 
     // folder where all models json are
-    var models = path.normalize(process.cwd() + '/' + options.modelsFolder + '/*.json');
+    var models = path.normalize(process.cwd() + '/' + options.modelsFolder + '/*');
 
     // folder where all apidoc declaration are
     var docs = path.normalize(process.cwd() + '/' + options.apidocsFolder);

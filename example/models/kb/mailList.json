@@ -1,0 +1,97 @@
+{
+  "model" : {
+    "name" : "MailList",
+    "crud" : {
+      "enable"  : true,
+      "exclude" : []
+    },
+    "fn" : [
+      {
+        "type" : "static",
+        "name" : "getItems"
+      },
+      {
+        "type" : "static",
+        "name" : "toDraft"
+      },
+      {
+        "type" : "static",
+        "name" : "toPublished"
+      },
+      {
+        "type" : "static",
+        "name" : "addRevision"
+      },
+      {
+        "type" : "static",
+        "name" : "getItems"
+      }
+    ],
+    "validator" : "topicModelValidator",
+    "properties" : {
+      "status"      : {
+        "type"      : "String",
+        "required"  : true
+      },
+      "creator_id"      : {
+        "type"      : "ObjectId",
+        "required"  : true
+      },
+      "icon_reference"      : {
+        "type"      : "String",
+        "required"  : true
+      },
+      "name"      : {
+        "type"      : "String",
+        "required"  : true
+      },
+      "little_name"      : {
+        "type"      : "String",
+        "required"  : false
+      },
+      "order"      : {
+        "type"      : "Number",
+        "required"  : true
+      },
+      "mailing_lists"      : {
+        "type"      : ["ObjectId"],
+        "required"  : true
+      },
+      "revisions"      : {
+        "required"  : false,
+        "type"      : [
+          {
+            "creator_id"      : {
+              "type"      : "ObjectId",
+              "required"  : true
+            },
+            "action"      : {
+              "type"      : "String",
+              "required"  : true
+            },
+            "diff"      : {
+              "type"      : "String",
+              "required"  : true
+            },
+            "created_date"      : {
+              "type"      : "Date",
+              "required"  : true
+            }
+          }
+        ]
+      },
+      "created_date"      : {
+        "type"      : "Date",
+        "required"  : true
+      },
+      "updated_date"      : {
+        "type"      : "Date",
+        "required"  : true
+      },
+      "deleted_date"      : {
+        "type"      : "Date",
+        "required"  : false
+      }
+    }
+  }
+}

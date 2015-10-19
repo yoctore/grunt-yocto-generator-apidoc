@@ -1,0 +1,111 @@
+{
+  "apidoc" : {
+    "methods" : [
+      {
+        "apiVersion"    : "0.1.0",
+        "type"          : "get",
+        "title"         : "GET mailList(s)",
+        "path"          : "/mailList/:user_id",
+        "apiPermission"  : "admin",
+        "addDefaultParamFromModel" : false,
+        "methodDescription" : "Method to retrieve one  of V.0.1.0 ..",
+        "specificParam" : [
+          {
+            "name"  : "user_id",
+            "type"  : "Object_id"
+          }
+        ],
+        "apiSuccessExample" : {
+          "name"    : "Success-Response",
+          "addDefaultParamFromModel" : true,
+          "example" : {
+            "header"  : "HTTP/1.1 200 OK"
+          }
+        },
+        "apiErrorExample" : "notFound"
+      },
+      {
+        "apiVersion" : "0.1.0",
+        "type"      : "post",
+        "path"      : "/mailList",
+        "methodDescription" : "Method to add a new mailList in database",
+        "title"         : "POST one mailList",
+        "apiPermission"  : "admin",
+        "specificParam" : [],
+        "apiSuccessExample" : "success",
+        "apiErrorExample" : "notFound"
+      },
+      {
+        "apiVersion"    : "0.1.0",
+        "type"          : "head",
+        "title"         : "HEAD of mailList(s)",
+        "path"          : "/mailList/:mailList",
+        "apiPermission"  : "admin",
+        "methodDescription" : "Method to retrieve the header of one or all mailList, if you want get  the header of one mailList you should specify his id, otherwise the header of whole mailLists are returned",
+        "addDefaultParamFromModel" : false,
+        "specificParam" : [
+          {
+            "name"  : "mailList_id",
+            "type"  : "Object_id"
+          }
+        ],
+        "apiSuccessExample" : "none",
+        "apiErrorExample" : "notFound"
+      },
+      {
+        "apiVersion"    : "0.1.0",
+        "type"          : "delete",
+        "title"         : "DELETE one mailList",
+        "path"          : "/mailList/:mailList_id",
+        "apiPermission"  : "admin",
+        "methodDescription" : "Method to delete a mailList in database",
+        "addDefaultParamFromModel" : false,
+        "specificParam" : [
+          {
+            "name"  : "mailList_id",
+            "type"  : "Object_id",
+            "required" : true
+          }
+        ],
+        "apiSuccessExample" : "success",
+        "apiErrorExample" : "notFound"
+      },
+      {
+        "apiVersion"    : "0.1.0",
+        "type"          : "patch",
+        "title"         : "PATCH one mailList",
+        "path"          : "/mailList/:mailList_id",
+        "apiPermission"  : "admin",
+        "methodDescription" : "Method to patch a specific param to mailList in database",
+        "addDefaultParamFromModel" : true,
+        "specificParam" : [
+          {
+            "name"  : "mailList_id",
+            "type"  : "Object_id",
+            "required" : true
+          }
+        ],
+        "apiSuccessExample" : "success",
+        "apiErrorExample" : "notFound"
+      },
+      {
+        "apiVersion"    : "0.1.0",
+        "type"          : "put",
+        "title"         : "PUT one mailList",
+        "path"          : "/mailList/:mailList_id",
+        "apiPermission"  : "admin",
+        "methodDescription" : "Method to put all property of a mailList in database",
+        "addDefaultParamFromModel" : true,
+        "specificParam" : [
+          {
+            "name"  : "mailList_id",
+            "type"  : "Object_id",
+            "required" : true
+          }
+        ],
+        "apiSuccessExample" : "success",
+        "apiErrorExample" : "notFound"
+      }
+    ]
+  }
+}
