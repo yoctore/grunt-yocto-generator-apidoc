@@ -141,11 +141,10 @@
           @apiSuccess {<%-model.properties[key]%>} <%- key %> <%- key %> of the din <%= model.name %>
         <% } %>
       <% } %>
-
-    @apiSuccessExample {json}<%= apiSuccessExample.name %>
-<%= apiSuccessExample.example.header %>:
-<%- contentSuccessString %>
   <% } %>
+  @apiSuccessExample {json}<%= apiSuccessExample.name %>
+  <%= apiSuccessExample.example.header %>:
+  <%- contentSuccessString %>
 <% } %>
 
 #Case is a normal success

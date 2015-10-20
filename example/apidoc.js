@@ -130,10 +130,9 @@
 * 
 *         
 *       
-* 
-*     @apiSuccessExample {json}Success-Response
-* HTTP/1.1 200 OK:
-* 
+*   
+*   @apiSuccessExample {json}Success-Response
+*   HTTP/1.1 200 OK:
 *   
 * 
 * 
@@ -881,15 +880,14 @@
 * 
 *         
 *       
-* 
-*     @apiSuccessExample {json}Success-Response
-* HTTP/1.2 200:
-* {
+*   
+*   @apiSuccessExample {json}Success-Response
+*   HTTP/1.2 200:
+*   {
   status : "success base code",
   code : "200000",
   message : "success",
   data : Object}
-*   
 * 
 * 
 * 
@@ -1138,13 +1136,16 @@
 * 
 * 
 * 
-*   @apiSuccessExample TopicSuccess-Response:
-*   HTTP/1.1 200 OK
+*   
+*     
+*   @apiSuccessExample {json}Success-Response
+*   HTTP/1.2 200:
 *   {
-*     "message" : "request success"
-*   }
+  status : "success base code",
+  code : "200000",
+  message : "success",
+  data : Object}
 * 
-*   @apiSuccess {String} message request success
 * 
 * 
 * 
@@ -1581,10 +1582,10 @@
 * 
 *         
 *       
-* 
-*     @apiSuccessExample {json}Success-Response
-* HTTP/1.2 200:
-* {
+*   
+*   @apiSuccessExample {json}Success-Response
+*   HTTP/1.2 200:
+*   {
   status : "success base code",
   code : "200000",
   message : "success",
@@ -1604,7 +1605,6 @@
     }
   ]
 }
-*   
 * 
 * 
 * 

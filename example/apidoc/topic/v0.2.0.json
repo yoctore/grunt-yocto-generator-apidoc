@@ -73,7 +73,19 @@
             "required" : true
           }
         ],
-        "apiSuccessExample" : "success",
+        "apiSuccessExample" : {
+          "name"    : "Success-Response",
+          "addDefaultParamFromModel" : false,
+          "example" : {
+            "header"  : "HTTP/1.2 200",
+            "content" : {
+              "status"    : "success base code",
+              "code"      : "200000",
+              "message"   : "success",
+              "data" : {}
+            }
+          }
+        },
         "apiErrorExample" : "notFound"
       },
       {
