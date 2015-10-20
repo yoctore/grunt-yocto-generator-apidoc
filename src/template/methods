@@ -142,15 +142,9 @@
         <% } %>
       <% } %>
 
-      @apiSuccessExample {json}<%= apiSuccessExample.name %>
-      <%= apiSuccessExample.example.header %>:
-      {
-      <% for(var key in model.properties) { %><% if (Object.prototype.toString.call(model.properties[key]) == '[object Array]') { %><% if (Object.prototype.toString.call(model.properties[key][0]) == '[object Object]') { %>
-        "<%- key %>" : ["<%= model.properties[key].type %>"]
-        <% } else { %>
-        "<%- key %>" : ["<%= model.properties[key] %>"]
-        <% } %><% } else { %>"<%- key %>" : "<%= model.properties[key] %>"<% } %><% } %>
-      }
+    @apiSuccessExample {json}<%= apiSuccessExample.name %>
+<%= apiSuccessExample.example.header %>:
+<%- contentSuccessString %>
   <% } %>
 <% } %>
 
@@ -178,6 +172,12 @@
   }
 
   @apiError {String} error Failed <%= type %> a <%= model.name %>
+
+<% } else if (typeof apiErrorExample === 'object') { %>
+
+@apiErrorExample Error <%= model.name %> : <%= apiErrorExample.name%>:
+<%= apiErrorExample.example.header%>
+<%-contentErrorString%>
 
 <% } %>
 <% } %>

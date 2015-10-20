@@ -1,3 +1,5 @@
-## 0.2.0 (2015/10/19)
+## 0.2.1 (2015/10/20)
+- Increase quality of the success and error sample based on properties (defined in model)
 
-- Separate declaration of model and apidoc object in two file and each version of api have now it's file 
+## 0.2.0 (2015/10/19)
+- Separate declaration of model and apidoc object in two file and each version of api have now it's file

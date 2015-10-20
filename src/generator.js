@@ -8,7 +8,6 @@ var LineByLineReader  = require('line-by-line');
 var path              = require('path');
 
 // TODO : ajouter la possibilité de se baser sur un fichier "route.json" pour récupérer la route d'un modele afin de ne pas dupliquer l'info
-// TODO : utiliser fonction yocto-utils pour généré les json object d'exemple
 
 /**
 * Generator of comments for apidocjs (www.apidocjs.com)
@@ -110,7 +109,8 @@ Generator.prototype.startProcess = function (src, docs, destFile, done, grunt) {
         var jsonModel = JSON.parse(fs.readFileSync(file, 'utf-8'));
 
         // Get each json file that are on the models repository
-        _.each(_.words(glob.sync(docs + path.basename(file, '.json') + '/*.json'), /[^,,]+/g), function (file) {
+        _.each(_.words(glob.sync(docs + path.basename(file, '.json') + '/*.json'), /[^,,]+/g),
+        function (file) {
 
           var jsonApiDoc =  JSON.parse(fs.readFileSync(file, 'utf-8'));
 
@@ -149,6 +149,99 @@ Generator.prototype.createApiFile = function (theTemplate, jsonModel, jsonApiDoc
 
     // add method in apidoc to the model
     _.extend(model, method);
+
+    model.contentSuccessString = '';
+
+    // Specific traitement for construct an object for the response with all properties defined in model
+    if (!_.isUndefined(model.apiSuccessExample) &&
+    !_.isUndefined(model.apiSuccessExample.example) &&
+    !_.isUndefined(model.apiSuccessExample.example.content)) {
+
+      var properties = '    {\n';
+
+      for (var key in model.model.properties) {
+
+        var type = model.model.properties[key].type;
+
+        if (typeof model.model.properties[key].type === 'object') {
+          type = 'Object';
+
+          if (model.model.properties[key].type.toString() === 'ObjectId') {
+            type = 'ObjectId';
+          }
+
+          if (_.isArray(model.model.properties[key].type)) {
+            type = '[ ' + type + ' ]';
+          }
+        }
+        properties += '      ' + key + ' : ' + type + ',\n';
+      }
+      properties += '    }\n';
+
+      var dataSuccess = '{\n';
+
+      // Retrieve number properties of in content obj
+      var lenghtContent = Object.keys(model.apiSuccessExample.example.content).length;
+      var i             = 0;
+      // read all docs
+      for (var k in model.apiSuccessExample.example.content) {
+
+        // increment
+        i++;
+
+        var value = model.apiSuccessExample.example.content[k];
+
+        // if value is 'defaultObjectProperties' we put all properties defined in model into this
+        if (model.apiSuccessExample.example.content[k].toString() === 'defaultObjectProperties') {
+
+          if (_.isArray(model.apiSuccessExample.example.content[k])) {
+            properties  = ' [\n' + properties + '  ]\n';
+          }
+
+          value = properties;
+        }
+
+        // define a line with specific rules
+        dataSuccess += '  ' + k + ' : ' +
+        (_.isString(model.apiSuccessExample.example.content[k]) ? '"' + value + '"' : value) +
+        (i >= lenghtContent ? '' : ',\n');
+      }
+
+      // close object
+      dataSuccess += '}';
+
+      model.contentSuccessString = dataSuccess;
+    }
+
+    // Specific traitement for construct an object for the error with all properties defined in model
+    if (!_.isUndefined(model.apiErrorExample) && !_.isUndefined(model.apiErrorExample.example) &&
+    !_.isUndefined(model.apiErrorExample.example.content)) {
+
+      var dataError = '{\n';
+
+      // Retrieve number properties of in content obj
+      var lenghtContentError = Object.keys(model.apiErrorExample.example.content).length;
+      var j = 0;
+      // read all docs
+      for (var keys in model.apiErrorExample.example.content) {
+
+        // increment
+        j++;
+
+        var valueError = _.isObject(model.apiErrorExample.example.content[keys]) ? 'Object' :
+        _.isObject(model.apiErrorExample.example.content[keys]);
+
+        // define a line with specific rules
+        dataError += '  ' + keys + ' : ' +
+        (_.isString(model.apiErrorExample.example.content[keys]) ? '"' + valueError +
+        '"' : valueError) + (j >= lenghtContentError ? '\n' : ',\n');
+      }
+
+      // close object
+      dataError += '}';
+
+      model.contentErrorString = dataError;
+    }
 
     // Generate the apidoc file with EJS template
     commentFile += ejs.render(theTemplate, model);

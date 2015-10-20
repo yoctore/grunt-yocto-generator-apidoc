@@ -19,7 +19,13 @@
           "name"    : "Success-Response",
           "addDefaultParamFromModel" : true,
           "example" : {
-            "header"  : "HTTP/1.1 200 OK"
+            "header"  : "HTTP/1.2 200",
+            "content" : {
+              "status"    : "success base code",
+              "code"      : "200000",
+              "message"   : "success",
+              "data" : [ "defaultObjectProperties" ]
+            }
           }
         },
         "apiErrorExample" : "notFound"
@@ -103,8 +109,32 @@
             "required" : true
           }
         ],
-        "apiSuccessExample" : "success",
-        "apiErrorExample" : "notFound"
+        "apiSuccessExample" : {
+          "name"    : "Success-Response",
+          "addDefaultParamFromModel" : true,
+          "example" : {
+            "header"  : "HTTP/1.2 200",
+            "content" : {
+              "status"    : "success base code",
+              "code"      : "200000",
+              "message"   : "success",
+              "data" :  [ "defaultObjectProperties" ]
+            }
+          }
+        },
+        "apiErrorExample" :  {
+          "name"    : "Not-found",
+          "addDefaultParamFromModel" : false,
+          "example" : {
+            "header"  : "HTTP/1.2 400",
+            "content" : {
+              "status"    : "error base code",
+              "code"      : "400",
+              "message"   : "error",
+              "data"      : {}
+            }
+          }
+        }
       }
     ]
   }

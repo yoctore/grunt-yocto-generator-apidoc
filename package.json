@@ -1,7 +1,7 @@
 {
   "name": "grunt-yocto-generator-apidoc",
   "description": "Plugin for generate comments file for apidoc",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "www.lab.yocto.digital:yocto-grunt-modules/yocto-grunt-apidoc",
   "author": {
     "name": "Balard Cedric",
@@ -34,11 +34,11 @@
     "gruntplugin"
   ],
   "dependencies": {
-    "glob": "^5.0.10",
-    "lodash": "^3.9.3",
-    "yocto-logger": "git+ssh://git@gitlab.com:yocto-node-modules/yocto-logger.git",
     "ejs": "latest",
-    "line-by-line": "^0.1.3"
+    "glob": "^5.0.10",
+    "line-by-line": "^0.1.3",
+    "lodash": "^3.9.3",
+    "yocto-logger": "git+ssh://git@gitlab.com:yocto-node-modules/yocto-logger.git"
   },
   "apidoc": {
     "title": "Yocto Rest Api",
