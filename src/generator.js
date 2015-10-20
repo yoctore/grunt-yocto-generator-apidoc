@@ -189,7 +189,8 @@ Generator.prototype.createApiFile = function (theTemplate, jsonModel, jsonApiDoc
         // increment
         i++;
 
-        var value = model.apiSuccessExample.example.content[k];
+        var value = _.isObject(model.apiSuccessExample.example.content[k]) ? 'Object' :
+        model.apiSuccessExample.example.content[k];
 
         // if value is 'defaultObjectProperties' we put all properties defined in model into this
         if (model.apiSuccessExample.example.content[k].toString() === 'defaultObjectProperties') {
@@ -229,7 +230,7 @@ Generator.prototype.createApiFile = function (theTemplate, jsonModel, jsonApiDoc
         j++;
 
         var valueError = _.isObject(model.apiErrorExample.example.content[keys]) ? 'Object' :
-        _.isObject(model.apiErrorExample.example.content[keys]);
+        model.apiErrorExample.example.content[keys];
 
         // define a line with specific rules
         dataError += '  ' + keys + ' : ' +

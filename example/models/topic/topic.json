@@ -54,7 +54,7 @@
         "required"  : true
       },
       "mailing_lists"      : {
-        "type"      : ["ObjectId"],
+        "type"      : [ "ObjectId" ],
         "required"  : true
       },
       "revisions"      : {

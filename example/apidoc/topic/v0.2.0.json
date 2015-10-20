@@ -24,7 +24,7 @@
               "status"    : "success base code",
               "code"      : "200000",
               "message"   : "success",
-              "data" : [ "defaultObjectProperties" ]
+              "data" : {}
             }
           }
         },

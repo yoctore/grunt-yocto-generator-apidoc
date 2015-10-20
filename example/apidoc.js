@@ -888,22 +888,7 @@
   status : "success base code",
   code : "200000",
   message : "success",
-  data :  [
-    {
-      status : String,
-      creator_id : ObjectId,
-      icon_reference : String,
-      name : String,
-      little_name : String,
-      order : Number,
-      mailing_lists : [ ObjectId ],
-      revisions : [ Object ],
-      created_date : Date,
-      updated_date : Date,
-      deleted_date : Date,
-    }
-  ]
-}
+  data : Object}
 *   
 * 
 * 
@@ -1631,9 +1616,9 @@
 * @apiErrorExample Error Topic : Not-found:
 * HTTP/1.2 400
 * {
-  status : "false",
-  code : "false",
-  message : "false",
+  status : "error base code",
+  code : "400",
+  message : "error",
   data : Object
 }
 * 
