@@ -7,6 +7,7 @@
     "name": "Balard Cedric",
     "email": "cedric.balard@yocto.re"
   },
+  "private" : true,
   "repository": {
     "type": "git",
     "url": "git+ssh:://git@gitlab.com:yocto-grunt-modules/yocto-grunt-apidoc.git"
