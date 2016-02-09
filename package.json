@@ -1,8 +1,7 @@
 {
   "name": "grunt-yocto-generator-apidoc",
   "description": "Plugin for generate comments file for apidoc",
-  "version": "1.0.0",
-  "homepage": "www.lab.yocto.digital:yocto-grunt-modules/yocto-grunt-apidoc",
+  "version": "0.5.0",
   "author": {
     "name": "Balard Cedric",
     "email": "cedric.balard@yocto.re"
@@ -10,7 +9,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+ssh:://git@gitlab.com:yocto-grunt-modules/yocto-grunt-apidoc.git"
+    "url": "https://github.com/yoctore/yocto-grunt-apidoc.git"
   },
   "files": [
     "tasks",

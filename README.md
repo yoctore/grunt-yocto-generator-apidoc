@@ -1,3 +1,5 @@
+![alt text](https://david-dm.org/yoctore/yocto-grunt-apidoc.svg "Dependencies Status")
+
 # grunt-yocto-generator-apidoc
 
 > Plugin for generate comments file for apidoc
@@ -8,8 +10,8 @@ For the structure of json file please refer to the yocto-api node module at :
  - git@lab.yocto.digital:yocto-node-modules/yocto-api.git
 
 
-
 ## Getting Started
+
 This plugin requires Grunt `~0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
