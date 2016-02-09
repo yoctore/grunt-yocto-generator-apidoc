@@ -7,7 +7,7 @@
 This module load all json file in a specific folder, and translate this data in a comments file that will be imported by apidoc for generate doc
 
 For the structure of json file please refer to the yocto-api node module at :
- - git@lab.yocto.digital:yocto-node-modules/yocto-api.git
+ - https://github.com/yoctore/yocto-api.git
 
 
 ## Getting Started
