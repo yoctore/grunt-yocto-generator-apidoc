@@ -1,7 +1,7 @@
 {
   "name": "grunt-yocto-generator-apidoc",
   "description": "Plugin for generate comments file for apidoc",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": {
     "name": "Yocto SAS",
     "email": "technique@yocto.re",
