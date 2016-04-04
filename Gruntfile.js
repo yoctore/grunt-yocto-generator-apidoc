@@ -40,21 +40,14 @@ module.exports = function(grunt) {
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
-
-  // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-apidoc');
   grunt.loadNpmTasks('yoctohint');
 
-
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('buildExample', [ 'yocto_generator_apidoc', 'apidoc' ]);
-
   grunt.registerTask('yhint', ['yoctohint']);
-
   grunt.registerTask('test', [ 'yocto_generator_apidoc' ]);
-
   grunt.registerTask('g-apidoc', ['apidoc:myapp']);
-
 };
